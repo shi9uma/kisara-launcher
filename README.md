@@ -1,3 +1,5 @@
+# 项目已转移至[ColorMC](https://github.com/Coloryr/ColorMC)
+
 # NsisoLauncher(DEV)
 
 A New Minecraft Launcher (unofficial) from Nsiso (DEV)  
