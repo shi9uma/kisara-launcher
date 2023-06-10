@@ -1,4 +1,4 @@
-# 项目已转移至[ColorMC](https://github.com/Coloryr/ColorMC)
+# 给自己服务器使用的定制启动器，一边学习一边客制
 
 # NsisoLauncher(DEV)
 
