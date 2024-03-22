@@ -41,12 +41,21 @@
          	'path': 'games/kisara-dream/mods/[创世神]-worldedit-v7.3.0.jar'
          	'url': 'https://cdn.modrinth.com/.../worldedit-mod-7.3.0.jar'	// 使用各路下载源, launcher 本身将不提供任何列表, 都是由服务器一键配置后获取 url 本地再下载, 当然, 如果服务器带宽很大, 很自信, 也可以自建下载源
          	'hash': '54321',
+         	'type': 'required'
      	},
          {
          	'name': '[jei]-jei-v1.2.3.jar',
          	'path': 'games/kisara-dream/mods/[jei]-jei-v1.2.3.jar'
          	'url': 'https://domain.com/minecraft/api/kisara-dream/mods/[jei]-jei-v1.2.3.jar'
          	'hash': '54322',
+             'type': 'required'
+     	},
+         {
+         	'name': '[投影]-Forgematica-0.1.3-mc1.20.1.jar',
+         	'path': 'games/kisara-dream/mods/[jei]-jei-v1.2.3.jar'
+         	'url': 'https://domain.com/minecraft/api/kisara-dream/mods/[jei]-jei-v1.2.3.jar'
+         	'hash': '54320',
+             'type': 'optional'
      	},
      }
      ```
