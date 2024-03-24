@@ -1,10 +1,19 @@
 # kisara-launcher
 
-老是让我手动改 mod 然后打包，其中还要写一个 "读我.txt" 来教人怎么安装和删除 mod 真的很烦；this repo forks from [Shanwer/NsisoLauncher](https://github.com/Shanwer/NsisoLauncher.git)，get root src here：[Coloryr/NsisoLauncher-1](https://github.com/Coloryr/NsisoLauncher-1.git)，another version：[Coloryr/ColorMC](https://github.com/Coloryr/ColorMC.git)
+老是让我手动改 mod 然后打包，其中还要写一个 "读我.txt" 来教人怎么安装和删除 mod 真的很烦；
+
+this repo forks from [Shanwer/NsisoLauncher](https://github.com/Shanwer/NsisoLauncher.git)，get root src here：[Coloryr/NsisoLauncher-1](https://github.com/Coloryr/NsisoLauncher-1.git)，another version：[Coloryr/ColorMC](https://github.com/Coloryr/ColorMC.git)。是的，在经过各种依赖的折磨，仍然不能启动这个项目的经历后，我决定在参考工程设计的情况下重写。尝试了以下几种技术构建：
+
+| 前端                    | 后端                                                | 交互                                                         | 备注                                                         |
+| ----------------------- | --------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| electron + vue          | cpp 纯编译成可执行文件，使用 httplib 开放在特定端口 | 二者通过 axios 交互                                          | 不方便打包成单个应用                                         |
+| electron + vue          | cpp                                                 | 使用 ffi-napi 和 node-gyp 将 cpp 源码编译成 *.node 文件，供前端调用 | ffi-napi 和 node-gyp 在不同平台还要做差异化调整，开发编写也比较麻烦 |
+| electron + vue          | cpp                                                 | 使用 Webassembly 将 cpp 编译成 *.wasm，供前端调用            | 想在 windows 将 Emscripten portable 化很麻烦                 |
+| **electron + vue + js** |                                                     |                                                              | **一把梭，如无必要、勿增实体**                               |
 
 ## mine
 
-是的，在经过各种依赖的折磨，仍然不能启动这个项目的经历后，我决定在参考工程设计的情况下重写。虽然 fork 的 source 都是用 csharp + xaml 写的，但是我想尝试一下现在比较新的一些东西：electron + cpp/python 来写：
+虽然 fork 的 source 都是用 csharp + xaml 写的，但是我想尝试一下现在比较新的一些东西：electron + cpp 来写：
 
 -   前端用 electron 开一个 app
 -   **首页**：单开一个页面用来提示信息（公告等），旁边直接列出对话框输入账号密码、登录；右下角有启动器设置；首页应该可以选择版本隔离对应的 mod 包
@@ -36,7 +45,7 @@
      1.   **如果是以整合包的形式分发**；只根据 config 获得的信息去检查对应文件路径的 hash，正确则跳过，错误则先记录，操作完后统一交由用户选择下载；**这里有一个启用文件完整性检查的选项，如果用户很自信，可以关闭，提高游戏启动速度（快几秒？）**
      2.   **如果只发 launcher 单文件（没有 forge、fabric 等）**；此时往往没有 meta url 填写，需要再约定发一个 url，client 根据  url 获取到的 main_config、mods_config，下载相应内容并放置，对于 installer 则执行一系列操作自动安装
 
-5.   用户后续启动时，检查 url 的 config，主要是 mods_config，逐一匹配 mod 的 hash，如果出现错误则记录，结束后弹对话框建议用户更新 mod 和 server 一致，更新结束后重新执行所有步骤
+5.   用户后续启动时，检查 url 的 config（如果 server 挂了，也可以跳过检查），主要是 mods_config，逐一匹配 mod 的 hash，如果出现错误则记录，结束后弹对话框建议用户更新 mod 和 server 一致，更新结束后重新执行所有步骤
 
 附上 client 端的目录：
 
@@ -69,7 +78,7 @@
 `-- kisara-launcher.exe
 ```
 
-## tree
+## src-tree
 
 -   gui：前端，应用程序代码、配置文件、资源文件、视图模型、视图和其他辅助类；
     -   Config（配置相关）
