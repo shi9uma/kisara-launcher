@@ -13,7 +13,7 @@ this repo forks from [Shanwer/NsisoLauncher](https://github.com/Shanwer/NsisoLau
 
 ## mine
 
-虽然 fork 的 source 都是用 csharp + xaml 写的，但是我想尝试一下现在比较新的一些东西：electron + cpp 来写：
+虽然 fork 的 source 都是用 csharp + xaml 写的，但是我想尝试一下现在比较新的一些东西：~~electron + cpp~~ electron + vue 来写：
 
 -   前端用 electron 开一个 app
 -   **首页**：单开一个页面用来提示信息（公告等），旁边直接列出对话框输入账号密码、登录；右下角有启动器设置；首页应该可以选择版本隔离对应的 mod 包

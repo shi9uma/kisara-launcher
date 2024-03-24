@@ -2,33 +2,32 @@
   "name": "kisara-launcher",
   "version": "0.1.0",
   "private": true,
+  "author": "shi9uma <https://github.com/shi9uma>",
+  "description": "A Minecraft Java Edition Launcher with Vue",
   "main": "index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "electron:serve": "vue-cli-service build && electron .",
-    "electron:build": "vue-cli-service build && electron-builder build --windows --linux --mac"
+    "electron:build": "vue-cli-service build && electron-builder build --windows"
   },
   "build": {
     "appId": "github.shi9uma.kisara-launcher",
     "productName": "Kisara-Launcher",
-    "copyright": "Shiguma",
+    "copyright": "shiguma",
     "directories": {
       "output": "dist_electron"
+    },
+    "electronDownload": {
+      "cache": "./electron-cache"
     },
     "mac": {
       "category": "github.shi9uma.kisara-launcher"
     },
     "win": {
       "target": "portable"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "url": "https://github.com/shi9uma/kisara-launcher"
-      }
-    ]
+    }
   },
   "dependencies": {
     "core-js": "^3.8.3",
@@ -42,6 +41,7 @@
     "@vue/cli-service": "~5.0.0",
     "electron": "^29.1.5",
     "electron-builder": "^24.13.3",
+    "electron-builder-squirrel-windows": "^24.13.3",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3"
   },

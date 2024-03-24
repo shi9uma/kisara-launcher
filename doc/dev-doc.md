@@ -1,6 +1,6 @@
 # dev doc
 
-## init for cpp（discard）
+## init for cpp（deprecate）
 
 以下是项目前后端调用逻辑的参考，以一个 sum 函数为例
 
@@ -257,7 +257,7 @@
              },
            ```
 
-      2.   build 成 electron 应用发布：`npm run electron:build`
+      2.   build 成 electron 应用发布：`npm run electron:build`（windows 下需要管理员）
 
 13.   完整 `packages.json` 如下：
 
