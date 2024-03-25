@@ -4,16 +4,16 @@
 
 this repo forks from [Shanwer/NsisoLauncher](https://github.com/Shanwer/NsisoLauncher.git)，get root src here：[Coloryr/NsisoLauncher-1](https://github.com/Coloryr/NsisoLauncher-1.git)，another version：[Coloryr/ColorMC](https://github.com/Coloryr/ColorMC.git)。是的，在经过各种依赖的折磨，仍然不能启动这个项目的经历后，我决定在参考工程设计的情况下重写。尝试了以下几种技术构建：
 
-| 前端                    | 后端                                                | 交互                                                         | 备注                                                         |
-| ----------------------- | --------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| electron + vue          | cpp 纯编译成可执行文件，使用 httplib 开放在特定端口 | 二者通过 axios 交互                                          | 不方便打包成单个应用                                         |
-| electron + vue          | cpp                                                 | 使用 ffi-napi 和 node-gyp 将 cpp 源码编译成 *.node 文件，供前端调用 | ffi-napi 和 node-gyp 在不同平台还要做差异化调整，开发编写也比较麻烦 |
-| electron + vue          | cpp                                                 | 使用 Webassembly 将 cpp 编译成 *.wasm，供前端调用            | 想在 windows 将 Emscripten portable 化很麻烦                 |
-| **electron + vue + js** |                                                     |                                                              | **一把梭，如无必要、勿增实体**                               |
+| 前端                           | 后端                                                | 交互                                                         | 备注                                                         |
+| ------------------------------ | --------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| electron + vue                 | cpp 纯编译成可执行文件，使用 httplib 开放在特定端口 | 二者通过 axios 交互                                          | 不方便打包成单个应用                                         |
+| electron + vue                 | cpp                                                 | 使用 ffi-napi 和 node-gyp 将 cpp 源码编译成 *.node 文件，供前端调用 | ffi-napi 和 node-gyp 在不同平台还要做差异化调整，开发编写也比较麻烦 |
+| electron + vue                 | cpp                                                 | 使用 Webassembly 将 cpp 编译成 *.wasm，供前端调用            | 想在 windows 将 Emscripten portable 化很麻烦                 |
+| **electron + vue + vite + js** |                                                     |                                                              | **一把梭，如无必要、勿增实体**                               |
 
 ## mine
 
-虽然 fork 的 source 都是用 csharp + xaml 写的，但是我想尝试一下现在比较新的一些东西：~~electron + cpp~~ electron + vue 来写：
+虽然 fork 的 source 都是用 csharp + xaml 写的，但是我想用：~~electron + cpp~~ electron + vue + vite + js 来写，满足一下自己学习一个前端框架的期望：
 
 -   前端用 electron 开一个 app
 -   **首页**：单开一个页面用来提示信息（公告等），旁边直接列出对话框输入账号密码、登录；右下角有启动器设置；首页应该可以选择版本隔离对应的 mod 包

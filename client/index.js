@@ -1,26 +1,24 @@
-const { app, BrowserWindow } = require('electron')
+import { app, BrowserWindow } from 'electron';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function createWindow() {
-  // 创建浏览器窗口
-  let win = new BrowserWindow({
-    width: 1600,
-    height: 900,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-    }
-  })
+    const win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        },
+    });
 
-  win.loadFile('dist/index.html')
-  win.on('closed', function () {
-    win = null
-  })
+    const startUrl = process.env.NODE_ENV === 'development'
+        ? 'http://localhost:5173' // Vite default dev port
+        : new URL('dist/index.html', import.meta.url).toString();
+
+    win.loadURL(startUrl);
 }
 
-app.on('ready', createWindow)
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
-app.on('activate', function () {
-  if (win === null) createWindow()
-})
+app.whenReady().then(createWindow);
