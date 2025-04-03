@@ -334,7 +334,7 @@
 
 ## init for vite
 
-1.   `cnpm install -g yarn vite`
+1.   `sudo cnpm install -g yarn vite`
 
 2.   `yarn create vite kisara-launcher --template vue`，`cd kisara-launcher`
 
